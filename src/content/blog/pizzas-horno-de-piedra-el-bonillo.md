@@ -58,7 +58,7 @@ Sí, y es de lo que más se pide. Llamas al **967 37 05 82**, encargas y pasas a
 La pizza se comparte bien con algo de picar al centro. Lo que mejor funciona con ella:
 
 - Unas **patatas americanas** (con salsa ranchera, bacon y queso) o unos **nachos mexicanos**.
-- **Croquetas caseras**, que se piden por unidades. Hay de jamón ibérico, gamba, boletus, morcilla y chipirones en su tinta.
+- **Croquetas caseras**, que se piden por unidades. Hay de jamón ibérico, gamba, boletus y carrillada.
 
 Y si alguien de la mesa no es de pizza, tiene las [hamburguesas especiales](/blog/hamburguesas-especiales-el-bonillo).
 

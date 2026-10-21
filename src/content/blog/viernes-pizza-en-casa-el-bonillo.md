@@ -28,7 +28,7 @@ Los pedidos para llevar entran más o menos **desde las 19:30-20:00 hasta las 22
 Una propuesta para cuatro:
 
 - **Dos pizzas para compartir**: una que guste a todos (4 Quesos o Barbacoa) y otra para arriesgar (la Manchega o la Mejicana, que pica).
-- **Croquetas caseras** por unidades: de jamón ibérico, de boletus o de chipirones en su tinta.
+- **Croquetas caseras** por unidades: de jamón ibérico, de boletus o de carrillada.
 - **Unas tostas**, si hay alguien de poco comer.
 
 Si hay niños, la Margarita o la Chicken, que es la hamburguesa más sencilla.

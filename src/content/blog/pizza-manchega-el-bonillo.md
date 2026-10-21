@@ -29,7 +29,7 @@ En el Rincón nos gusta tanto que también lo tenemos como tapa: **lomo de orza 
 La Manchega es contundente, así que pide algo fresco al lado:
 
 - **Ensalada de queso de cabra** o **ensalada césar**, para compartir.
-- Si queréis seguir con lo de aquí, unas **croquetas caseras de morcilla**. Las tienes en [nuestras croquetas](/blog/croquetas-caseras-el-bonillo).
+- Si queréis seguir con lo de aquí, unas **croquetas caseras de carrillada**. Las tienes en [nuestras croquetas](/blog/croquetas-caseras-el-bonillo).
 
 Para beber, un tinto de El Bonillo le va muy bien. En la bodega hay varios de Pago Guijoso y de Finca Élez; te contamos cuáles en [vinos de El Bonillo](/blog/vinos-el-bonillo-pago-guijoso-finca-elez).
 

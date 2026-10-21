@@ -13,7 +13,7 @@ En Campo de Montiel el otoño se nota: noches frías y ganas de comer caliente. 
 
 ## Croquetas de boletus
 
-La de **boletus** es una de nuestras cinco croquetas caseras. Se pide por unidades, a 1,70 €, y es la que más apetece con los primeros fríos. El resto, en [nuestras croquetas](/blog/croquetas-caseras-el-bonillo).
+La de **boletus** es una de nuestras cuatro croquetas caseras. Se pide por unidades, a 1,70 €, y es la que más apetece con los primeros fríos. El resto, en [nuestras croquetas](/blog/croquetas-caseras-el-bonillo).
 
 ## El menú de fin de semana, de temporada
 

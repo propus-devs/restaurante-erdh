@@ -1,13 +1,13 @@
 ---
-titulo: "Croquetas caseras: jamón ibérico, boletus, morcilla y más"
-descripcion: "Cinco croquetas caseras por unidades en El Rincón de Héctor: jamón ibérico, gamba, boletus, morcilla y chipirones en su tinta. Cuál pedir y cuántas por persona."
+titulo: "Croquetas caseras: jamón ibérico, boletus, carrillada y más"
+descripcion: "Cuatro croquetas caseras por unidades en El Rincón de Héctor: jamón ibérico, gamba, boletus y carrillada. Cuál pedir y cuántas por persona."
 categoria: "Cenas y tapeo"
 imagen: "../../assets/blog/plato-oscuro.webp"
 imagen_alt: "Plato de tapa servido sobre pizarra negra con luz de estudio"
 fecha: 2026-09-08
 ---
 
-**En El Rincón de Héctor tenemos cinco croquetas caseras y se piden por unidades, a 1,70 € cada una: jamón ibérico, gamba, boletus, morcilla y chipirones en su tinta.** Al ir sueltas, cada mesa puede pedir exactamente las que quiere y probar varios sabores sin comprometerse con una ración entera.
+**En El Rincón de Héctor tenemos cuatro croquetas caseras y se piden por unidades, a 1,70 € cada una: jamón ibérico, gamba, boletus y carrillada.** Al ir sueltas, cada mesa puede pedir exactamente las que quiere y probar varios sabores sin comprometerse con una ración entera.
 
 Son de lo que más se pide para empezar una cena.
 
@@ -18,8 +18,7 @@ Son de lo que más se pide para empezar una cena.
 | **Jamón ibérico** | La clásica. Lleva la etiqueta de «Popular» en la carta |
 | **Gamba** | Suave, con sabor a marisco |
 | **Boletus** | La de setas, muy de otoño |
-| **Morcilla** | La más manchega |
-| **Chipirones en su tinta** | Negra, con sabor intenso a mar |
+| **Carrillada** | Melosa, con sabor a guiso de siempre |
 
 ## ¿Cuántas pido?
 

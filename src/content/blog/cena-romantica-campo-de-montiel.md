@@ -15,7 +15,7 @@ Estas son nuestras ideas para una cena en pareja.
 
 Una cena para compartir, sin prisas:
 
-1. **Para empezar:** unas croquetas caseras (prueba la de chipirones en su tinta o la de boletus) y un pincho de pulpo con patata cada uno.
+1. **Para empezar:** unas croquetas caseras (prueba la de carrillada o la de boletus) y un pincho de pulpo con patata cada uno.
 2. **Al centro:** bacalao al ajo confitado o unas cigalitas salteadas.
 3. **Carne:** secreto ibérico en salsa española o solomillo a la pimienta.
 

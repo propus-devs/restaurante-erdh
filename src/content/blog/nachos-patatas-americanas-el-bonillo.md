@@ -53,7 +53,7 @@ Y luego una pizza o una hamburguesa por cabeza, o alguna menos si queréis compa
 
 ## ¿Algo más para picar?
 
-- [Croquetas caseras](/blog/croquetas-caseras-el-bonillo) de cinco sabores, por unidades.
+- [Croquetas caseras](/blog/croquetas-caseras-el-bonillo) de cuatro sabores, por unidades.
 - Tapas calientes de carne y pescado para una cena de tapeo completa: [cenar de tapeo en El Bonillo](/blog/tapas-para-cenar-el-bonillo).
 
 Reservas en el **967 37 05 82**. Abrimos el viernes de 20:00 a 23:00 h y el sábado y el domingo de 12:00 a 16:00 h y de 20:00 a 23:00 h.
