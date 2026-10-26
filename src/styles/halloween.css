@@ -1,0 +1,104 @@
+/*
+ * Efectos del especial de Halloween ("El Bocado del Diablo"). Es temporal: se
+ * borra junto con la página y los componentes Halloween* (ver
+ * src/data/halloween.ts). Las animaciones no se pueden hacer solo con
+ * utilidades de Tailwind, por eso viven aquí; el resto del estilo va en clases.
+ */
+
+/* Titulo que parpadea como una vela a punto de apagarse */
+@keyframes hw-flicker {
+  0%, 17%, 23%, 58%, 64%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 14px color-mix(in srgb, var(--color-accent) 70%, transparent),
+      0 0 38px color-mix(in srgb, var(--color-accent) 40%, transparent),
+      0 2px 24px rgb(0 0 0 / 0.85);
+  }
+  20%, 61% {
+    opacity: 0.86;
+    text-shadow:
+      0 0 5px color-mix(in srgb, var(--color-accent) 35%, transparent),
+      0 2px 24px rgb(0 0 0 / 0.85);
+  }
+}
+
+.hw-flicker {
+  text-shadow:
+    0 0 14px color-mix(in srgb, var(--color-accent) 70%, transparent),
+    0 0 38px color-mix(in srgb, var(--color-accent) 40%, transparent),
+    0 2px 24px rgb(0 0 0 / 0.85);
+  animation: hw-flicker 5.5s linear infinite;
+}
+
+/* Resplandor de brasa que late alrededor de tarjetas e imagenes */
+@keyframes hw-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 22px -6px color-mix(in srgb, var(--color-accent) 55%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--color-accent) 30%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 44px -4px color-mix(in srgb, var(--color-accent) 85%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--color-accent) 55%, transparent);
+  }
+}
+
+.hw-glow {
+  animation: hw-glow 3.2s ease-in-out infinite;
+}
+
+/*
+ * Brasas que suben y se apagan. Cada una recibe sus valores por variables CSS
+ * (--x, --s, --d, --delay, --drift); --rise lo fija el contenedor.
+ */
+@keyframes hw-ember {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0; }
+  12% { opacity: 0.95; }
+  60% { opacity: 0.6; }
+  100% { transform: translate3d(var(--drift, 0), var(--rise, -85vh), 0) scale(0.3); opacity: 0; }
+}
+
+.hw-ember {
+  position: absolute;
+  bottom: -12px;
+  left: var(--x);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 9999px;
+  background: var(--color-accent-soft);
+  box-shadow: 0 0 6px 1px color-mix(in srgb, var(--color-accent) 90%, transparent);
+  opacity: 0;
+  animation: hw-ember var(--d) linear var(--delay) infinite;
+  will-change: transform, opacity;
+}
+
+/* Niebla baja que se desliza despacio */
+@keyframes hw-fog {
+  from { transform: translateX(-7%); }
+  to { transform: translateX(7%); }
+}
+
+.hw-fog {
+  position: absolute;
+  left: -25%;
+  right: -25%;
+  bottom: -8%;
+  height: 42%;
+  background: radial-gradient(ellipse 50% 50% at 50% 60%, rgb(210 200 190 / 0.13), transparent 70%);
+  filter: blur(28px);
+  pointer-events: none;
+  animation: hw-fog 20s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hw-flicker,
+  .hw-glow,
+  .hw-fog {
+    animation: none;
+  }
+
+  .hw-ember {
+    display: none;
+  }
+}

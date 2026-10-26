@@ -1,0 +1,265 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HalloweenEmbers from '../components/HalloweenEmbers.astro';
+import { Icon } from 'astro-icon/components';
+import { headerElements, footerSocial, contactPhone } from '../data/nav';
+import { HORARIO } from '../data/negocio';
+import { halloweenPizza as pizza, halloweenCaducada } from '../data/halloween';
+import '../styles/halloween.css';
+
+// Temporal: ver src/data/halloween.ts (caduca el 2 de noviembre y trae la lista
+// de archivos a borrar).
+const caducada = halloweenCaducada();
+const telHref = `tel:${contactPhone.replace(/\s/g, '')}`;
+const img = `${pizza.imgDir}/bocado-diablo`;
+
+const countdown = [
+	['d', 'Días'],
+	['h', 'Horas'],
+	['m', 'Min'],
+	['s', 'Seg'],
+] as const;
+
+// Un cuarto de telaraña para la esquina: radios cada 18° y anillos que se
+// combán hacia el centro entre radio y radio.
+const web = (() => {
+	const R = 200;
+	const angles = [0, 18, 36, 54, 72, 90].map((d) => (d * Math.PI) / 180);
+	const pt = (r: number, a: number) => `${(r * Math.cos(a)).toFixed(1)} ${(r * Math.sin(a)).toFixed(1)}`;
+	const spokes = angles.map((a) => `M0 0L${pt(R, a)}`).join('');
+	const rings = [34, 70, 108, 150, 200]
+		.map((r) => {
+			let d = `M${pt(r, angles[0])}`;
+			for (let i = 1; i < angles.length; i++) {
+				const mid = (angles[i - 1] + angles[i]) / 2;
+				d += `Q${pt(r * 0.86, mid)} ${pt(r, angles[i])}`;
+			}
+			return d;
+		})
+		.join('');
+	return spokes + rings;
+})();
+---
+
+<Layout
+	restaurantName="El Rincón de Héctor"
+	seo={{
+		title: `${pizza.name} · Pizza especial de Halloween | El Rincón de Héctor`,
+		description: `Pizza especial de Halloween por tiempo limitado: ${pizza.name}. Pan negro al carbón, bacon, mini burgers, mozzarella, barbacoa y cheddar. Solo hasta el ${pizza.hastaLabel} en El Bonillo.`,
+		image: `${pizza.imgDir}/og-bocado-diablo.jpg`,
+		noindex: true,
+	}}
+>
+	<Header slot="header" elements={headerElements} phone={contactPhone} socialElements={footerSocial} />
+
+	{!caducada && (
+		<Fragment>
+			<!-- ── HERO: nombre, imagen y efectos ── -->
+			<section data-halloween-active class="relative isolate overflow-hidden bg-bg-deep pt-12 lg:pt-0">
+				<div class="relative aspect-4/3 lg:absolute lg:inset-0 lg:aspect-auto">
+					<img
+						src={`${img}-lateral-2000.webp`}
+						srcset={`${img}-lateral-1000.webp 1000w, ${img}-lateral-2000.webp 2000w`}
+						sizes="100vw"
+						width="2000"
+						height="1116"
+						alt="Pizza El Bocado del Diablo: base de pan negro con un remolino de salsa barbacoa y cheddar, rodeada de velas, una calabaza y brasas"
+						fetchpriority="high"
+						decoding="async"
+						class="size-full object-cover object-[72%_center] lg:object-[30%_center]"
+					/>
+					<!-- Oscurece arriba y abajo; en desktop también a la izquierda, donde va el texto -->
+					<div class="absolute inset-0 bg-linear-to-b from-bg-deep/70 via-transparent to-bg-deep"></div>
+					<div class="absolute inset-0 hidden bg-linear-to-r from-bg-deep via-bg-deep/70 via-40% to-transparent lg:block"></div>
+					<div class="absolute inset-0 bg-radial from-transparent from-55% to-black/60"></div>
+				</div>
+
+				<!-- Ambiente: telaraña, niebla y brasas -->
+				<svg
+					viewBox="0 0 200 200"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="0.7"
+					aria-hidden="true"
+					class="pointer-events-none absolute left-0 top-12 w-40 text-primary/25 lg:top-16 lg:w-72"
+				>
+					<path d={web}></path>
+				</svg>
+				<div class="hw-fog" aria-hidden="true"></div>
+				<HalloweenEmbers count={18} />
+
+				<!-- Funde el final del hero con el negro de la sección siguiente: sin esto la niebla y las brasas se cortan en seco en el borde -->
+				<div class="pointer-events-none absolute inset-x-0 bottom-0 z-5 h-40 bg-linear-to-b from-transparent to-bg-deep lg:h-64" aria-hidden="true"></div>
+
+				<div class="relative z-10 -mt-8 flex flex-col items-center gap-5 px-6 pb-14 text-center lg:mt-0 lg:min-h-screen lg:items-start lg:justify-center lg:px-24 lg:pb-24 lg:pt-28 lg:text-left">
+					<span class="inline-flex items-center gap-1.5 rounded-full border border-accent-soft/35 bg-accent/10 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.14em] text-accent-light">
+						<Icon name="lucide:ghost" class="size-3.5" />
+						Pizza especial de Halloween
+					</span>
+
+					<h1 class="hw-flicker font-display text-5xl font-bold leading-[0.95] tracking-tight text-primary sm:text-7xl lg:text-8xl">
+						<span class="block">El Bocado</span>
+						<span class="block">del <span class="text-accent-light">Diablo</span></span>
+					</h1>
+
+					<p class="flex flex-col items-center gap-1.5 lg:items-start">
+						<span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent">
+							<Icon name="lucide:flame" class="size-4" />
+							Por tiempo limitado
+						</span>
+						<span class="text-xs uppercase tracking-[0.18em] text-secondary/70">Hasta el {pizza.hastaLabel}</span>
+					</p>
+
+					<p class="max-w-md leading-relaxed text-text-accent lg:text-lg">
+						{pizza.description}
+					</p>
+
+					<div class="flex flex-col items-center gap-6 lg:items-start">
+						<p class="font-display text-5xl font-bold text-accent-soft">{pizza.price}</p>
+
+						<div class="flex flex-col items-center gap-2 lg:items-start">
+							<span class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-secondary/60">Se esfuma en</span>
+							<div role="timer" aria-label="Tiempo que queda para probar la pizza" class="flex gap-2">
+								{countdown.map(([key, label]) => (
+									<div class="flex w-14 flex-col items-center rounded-lg border border-accent/30 bg-black/50 py-2 backdrop-blur-sm">
+										<span data-cd={key} class="font-display text-2xl font-bold tabular-nums text-primary">--</span>
+										<span class="text-[0.6rem] uppercase tracking-widest text-secondary/60">{label}</span>
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ── INGREDIENTES ── -->
+			<section data-halloween-active class="relative bg-bg-deep px-6 py-20 lg:py-28">
+				<div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
+					<div class="order-2 lg:order-1">
+						<div class="hw-glow overflow-hidden rounded-xl border border-accent/30">
+							<img
+								src={`${img}-cenital-2000.webp`}
+								srcset={`${img}-cenital-1000.webp 1000w, ${img}-cenital-2000.webp 2000w`}
+								sizes="(min-width: 1024px) 560px, 100vw"
+								width="2000"
+								height="1116"
+								alt="El Bocado del Diablo vista desde arriba: el espiral de barbacoa y cheddar parece una telaraña"
+								loading="lazy"
+								decoding="async"
+								class="aspect-4/3 w-full object-cover object-[38%_center]"
+							/>
+						</div>
+					</div>
+
+					<div class="order-1 flex flex-col gap-6 lg:order-2">
+						<span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-accent">
+							Ingredientes <Icon name="lucide:skull" class="size-4" />
+						</span>
+						<h2 class="font-display text-3xl font-bold leading-tight text-primary lg:text-5xl">
+							Lo que esconde cada bocado
+						</h2>
+						<ul class="flex flex-col gap-3">
+							{pizza.ingredients.map((item) => (
+								<li class="flex items-center gap-3">
+									<span class="flex size-6 shrink-0 items-center justify-center rounded-md bg-accent-muted text-accent">
+										<Icon name="lucide:check" class="size-3" />
+									</span>
+									<span class="leading-snug text-secondary">{item}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- ── CTA ── -->
+			<section data-halloween-active class="relative isolate overflow-hidden bg-bg-deep px-6 py-24 text-center lg:py-32">
+				<div class="absolute inset-0 -z-10 bg-radial from-accent/25 to-transparent to-70%" aria-hidden="true"></div>
+				<HalloweenEmbers count={9} rise="-420px" />
+
+				<div class="relative mx-auto flex max-w-2xl flex-col items-center gap-6">
+					<Icon name="lucide:flame" class="size-9 text-accent" />
+					<h2 class="hw-flicker font-display text-4xl font-bold text-primary sm:text-6xl">¿Te atreves a probarla?</h2>
+					<p class="max-w-md leading-relaxed text-text-accent">
+						Solo hasta el {pizza.hastaLabel}. Reserva tu mesa o llámanos y te confirmamos disponibilidad enseguida.
+					</p>
+
+					<div class="flex flex-wrap justify-center gap-3">
+						<a href="/#reservas" class="btn-primary">
+							Reservar mesa <Icon name="lucide:calendar" class="size-4" />
+						</a>
+						<a href={telHref} class="btn-secondary">
+							<Icon name="lucide:phone" class="size-4" /> Llamar {contactPhone}
+						</a>
+					</div>
+
+					<ul class="flex flex-col gap-1 text-sm text-secondary/60">
+						{HORARIO.map((linea) => <li>{linea}</li>)}
+					</ul>
+
+					<p class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm">
+						<a href="/carta" class="inline-flex items-center gap-1.5 text-accent-light transition-colors hover:text-accent-soft">
+							<Icon name="lucide:book-open" class="size-4" /> Ver la carta
+						</a>
+						<a href="/#burguer-del-mes" class="inline-flex items-center gap-1.5 text-accent-light transition-colors hover:text-accent-soft">
+							<Icon name="lucide:hamburger" class="size-4" /> Prueba también la Burguer de Halloween
+						</a>
+					</p>
+				</div>
+			</section>
+		</Fragment>
+	)}
+
+	<!-- ── Pasada la fecha ── -->
+	<section data-halloween-ended hidden={!caducada} class="bg-bg-deep">
+		<div class="mx-auto flex min-h-svh max-w-xl flex-col items-center justify-center gap-6 px-6 py-32 text-center">
+			<Icon name="lucide:ghost" class="size-10 text-accent" />
+			<h1 class="font-display text-4xl font-bold text-primary sm:text-5xl">{pizza.name} se ha esfumado</h1>
+			<p class="leading-relaxed text-text-accent">
+				La pizza de Halloween ya no está en el horno. Mira todo lo que sí tenemos en la carta.
+			</p>
+			<a href="/carta" class="btn-primary">
+				Ver la carta <Icon name="lucide:book-open" class="size-4" />
+			</a>
+		</div>
+	</section>
+
+	<Footer slot="footer" socialElements={footerSocial} restaurantName="El Rincón de Héctor" />
+</Layout>
+
+<script>
+	import { HALLOWEEN_HASTA } from '../data/halloween';
+
+	const hasta = Date.parse(HALLOWEEN_HASTA);
+	const slot = (key: string) => document.querySelector<HTMLElement>(`[data-cd="${key}"]`);
+	const slots = { d: slot('d'), h: slot('h'), m: slot('m'), s: slot('s') };
+	const pad = (n: number) => String(n).padStart(2, '0');
+
+	let timer: number | undefined;
+
+	// Si la página se queda abierta (o se carga) pasada la fecha, se cambia al
+	// aviso de que ya no está.
+	function expire() {
+		clearInterval(timer);
+		document.querySelectorAll('[data-halloween-active]').forEach((el) => el.remove());
+		document.querySelector('[data-halloween-ended]')?.removeAttribute('hidden');
+	}
+
+	function tick() {
+		const left = hasta - Date.now();
+		if (left <= 0) {
+			expire();
+			return;
+		}
+		const total = Math.floor(left / 1000);
+		if (slots.d) slots.d.textContent = pad(Math.floor(total / 86400));
+		if (slots.h) slots.h.textContent = pad(Math.floor((total % 86400) / 3600));
+		if (slots.m) slots.m.textContent = pad(Math.floor((total % 3600) / 60));
+		if (slots.s) slots.s.textContent = pad(total % 60);
+	}
+
+	timer = window.setInterval(tick, 1000);
+	tick();
+</script>

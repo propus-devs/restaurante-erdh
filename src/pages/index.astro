@@ -8,6 +8,8 @@ import About from '../components/About.astro';
 import Reservations from '../components/Reservations.astro';
 import Gallery from '../components/Gallery.astro';
 import Reviews from '../components/Reviews.astro';
+// Temporal (Halloween 2026): se apaga solo el 2 nov. Ver src/data/halloween.ts
+import HalloweenPopup from '../components/HalloweenPopup.astro';
 import { headerElements, footerSocial, contactPhone } from '../data/nav';
 // ⚠️ Si cambias el horario de abajo (About y Reservations), cámbialo también
 // en src/data/negocio.ts: es el que enseña el blog al final de cada entrada.
@@ -151,4 +153,5 @@ import { headerElements, footerSocial, contactPhone } from '../data/nav';
 		socialElements={footerSocial}
 		restaurantName="El Rincón de Héctor"
 	/>
+	<HalloweenPopup />
 </Layout>

@@ -1,0 +1,137 @@
+---
+import { Icon } from 'astro-icon/components';
+import HalloweenEmbers from './HalloweenEmbers.astro';
+import { halloweenPizza as pizza, halloweenCaducada } from '../data/halloween';
+import '../styles/halloween.css';
+
+// Temporal: ver src/data/halloween.ts. Si ya pasó la fecha al compilar, no se
+// pinta nada.
+const caducada = halloweenCaducada();
+---
+
+{!caducada && (
+	<!--
+		No es un modal: sin fondo que oscurezca, sin bloquear el scroll y sin
+		atrapar el foco, para no pelearse con el scroll del vídeo de la burguer
+		del mes (Lenis + ScrollTrigger). Por debajo del header (z-100) y del panel
+		móvil (z-110).
+	-->
+	<aside
+		id="halloween-popup"
+		role="region"
+		aria-label="Pizza especial de Halloween"
+		aria-hidden="true"
+		inert
+		class="pointer-events-none fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-90 translate-y-[130%] opacity-0 transition duration-500 ease-out data-[visible]:pointer-events-auto data-[visible]:translate-y-0 data-[visible]:opacity-100 md:inset-x-auto md:bottom-6 md:right-6 md:w-88"
+	>
+		<div class="hw-glow relative flex overflow-hidden rounded-xl border border-accent/50 bg-black/90 backdrop-blur-md md:flex-col">
+			<div class="relative w-24 shrink-0 overflow-hidden md:aspect-video md:w-full">
+				<img
+					src={`${pizza.imgDir}/bocado-diablo-lateral-1000.webp`}
+					width="1000"
+					height="558"
+					alt=""
+					loading="lazy"
+					decoding="async"
+					class="absolute inset-0 size-full object-cover object-[78%_center] md:origin-[68%_60%] md:scale-[1.3] md:object-[66%_center]"
+				/>
+				<div class="absolute inset-0 bg-linear-to-r from-transparent to-black/80 md:bg-linear-to-b md:from-transparent md:to-black/90"></div>
+			</div>
+
+			<HalloweenEmbers count={6} rise="-170px" />
+
+			<div class="relative flex flex-1 flex-col gap-1.5 p-3 pr-12 md:gap-2 md:p-4 md:pr-4">
+				<span class="inline-flex items-center gap-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-accent-light">
+					<Icon name="lucide:ghost" class="size-3.5" />
+					Edición limitada<span class="hidden md:inline"> · Halloween</span>
+				</span>
+				<p class="hw-flicker font-display text-xl font-bold leading-tight text-primary md:text-3xl">
+					{pizza.name}
+				</p>
+				<p class="hidden text-sm leading-snug text-secondary md:block">
+					Pan negro al carbón, bacon, mini burgers y un espiral de barbacoa y cheddar. Solo hasta el {pizza.hastaLabel}.
+				</p>
+				<div class="mt-1 flex items-center gap-3">
+					<a href="/halloween" class="btn-primary px-4 py-2 text-xs md:text-sm">
+						Descubrirla <Icon name="lucide:arrow-right" class="size-4" />
+					</a>
+					<span class="font-display text-xl font-bold text-accent-soft md:text-2xl">{pizza.price}</span>
+				</div>
+			</div>
+
+			<button
+				type="button"
+				data-popup-close
+				aria-label="Cerrar aviso"
+				class="absolute right-1.5 top-1.5 z-10 grid size-10 cursor-pointer place-items-center rounded-full bg-black/70 text-primary ring-1 ring-primary/25 transition-colors hover:bg-primary hover:text-bg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+			>
+				<Icon name="lucide:x" class="size-5" />
+			</button>
+		</div>
+	</aside>
+)}
+
+<script>
+	import { HALLOWEEN_HASTA } from '../data/halloween';
+
+	const KEY = 'rdh-halloween-popup';
+	const DELAY_MS = 5000;
+
+	const popup = document.getElementById('halloween-popup');
+
+	if (popup && Date.now() < Date.parse(HALLOWEEN_HASTA)) {
+		// Una vez por sesión: se marca al enseñarlo, no al cerrarlo, para que no
+		// reaparezca si navegan a la carta y vuelven.
+		let seen = false;
+		try {
+			seen = sessionStorage.getItem(KEY) === '1';
+		} catch {
+			// Sin sessionStorage (modo privado, datos bloqueados): se enseña igual.
+		}
+
+		if (!seen) {
+			let open = false;
+			let tucked = false;
+
+			const render = () => {
+				const visible = open && !tucked;
+				popup.toggleAttribute('data-visible', visible);
+				popup.toggleAttribute('inert', !visible);
+				popup.setAttribute('aria-hidden', String(!visible));
+			};
+
+			const close = () => {
+				open = false;
+				render();
+			};
+
+			popup.querySelector('[data-popup-close]')?.addEventListener('click', close);
+			document.addEventListener('keydown', (e: KeyboardEvent) => {
+				if (e.key === 'Escape' && open) close();
+			});
+
+			// Mientras la sección de la burguer del mes está en pantalla, el aviso se
+			// esconde para no taparle el vídeo ni el botón; vuelve al salir de ella.
+			const burger = document.getElementById('burguer-del-mes');
+			if (burger) {
+				new IntersectionObserver(
+					([entry]) => {
+						tucked = entry.isIntersecting;
+						render();
+					},
+					{ threshold: 0.05 },
+				).observe(burger);
+			}
+
+			setTimeout(() => {
+				open = true;
+				render();
+				try {
+					sessionStorage.setItem(KEY, '1');
+				} catch {
+					// Sin sessionStorage: puede repetirse al navegar, no pasa nada.
+				}
+			}, DELAY_MS);
+		}
+	}
+</script>

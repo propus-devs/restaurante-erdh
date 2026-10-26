@@ -1,0 +1,54 @@
+---
+import { Icon } from 'astro-icon/components';
+import { halloweenPizza as pizza, halloweenCaducada } from '../data/halloween';
+import '../styles/halloween.css';
+
+// Temporal: ver src/data/halloween.ts. Sale en la pestaña Pizzas de la carta.
+const caducada = halloweenCaducada();
+---
+
+{!caducada && (
+	<a
+		href="/halloween"
+		data-halloween-carta
+		class="hw-glow group relative mb-10 flex flex-col overflow-hidden rounded-lg border border-accent/50 bg-bg-deep md:flex-row"
+	>
+		<div class="relative aspect-video shrink-0 overflow-hidden md:aspect-auto md:w-2/5">
+			<img
+				src={`${pizza.imgDir}/bocado-diablo-lateral-1000.webp`}
+				width="1000"
+				height="558"
+				alt={`Pizza ${pizza.name}`}
+				loading="lazy"
+				decoding="async"
+				class="absolute inset-0 size-full object-cover object-[66%_center] transition-transform duration-500 group-hover:scale-105"
+			/>
+			<div class="absolute inset-0 bg-linear-to-t from-bg-deep/80 to-transparent md:bg-linear-to-r md:from-transparent md:to-bg-deep/80"></div>
+		</div>
+
+		<div class="relative flex flex-1 flex-col justify-center gap-3 p-5 md:p-6">
+			<span class="inline-flex items-center gap-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-accent-light">
+				<Icon name="lucide:ghost" class="size-3.5" />
+				Especial Halloween · Edición limitada
+			</span>
+			<h3 class="hw-flicker font-display text-2xl font-bold leading-tight text-primary md:text-3xl">{pizza.name}</h3>
+			<p class="text-sm leading-relaxed text-secondary">{pizza.ingredients.join(' · ')}</p>
+			<div class="mt-1 flex items-center justify-between gap-4">
+				<span class="font-display text-2xl font-bold text-accent-soft">{pizza.price}</span>
+				<span class="inline-flex items-center gap-1.5 text-xs text-accent-light">
+					Solo hasta el {pizza.hastaLabel}
+					<Icon name="lucide:arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
+				</span>
+			</div>
+		</div>
+	</a>
+)}
+
+<script>
+	import { HALLOWEEN_HASTA } from '../data/halloween';
+
+	// La carta compilada puede seguir publicada pasada la fecha.
+	if (Date.now() >= Date.parse(HALLOWEEN_HASTA)) {
+		document.querySelectorAll('[data-halloween-carta]').forEach((el) => el.remove());
+	}
+</script>

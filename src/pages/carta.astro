@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+// Temporal (Halloween 2026): se apaga solo el 2 nov. Ver src/data/halloween.ts
+import HalloweenCartaCard from '../components/HalloweenCartaCard.astro';
 import { Icon } from 'astro-icon/components';
 import { headerElements, footerSocial, contactPhone } from '../data/nav';
 
@@ -426,6 +428,7 @@ const refrescos: Drink[] = [
 
         <!-- PIZZAS -->
         <section id="pizzas" class="tab-section hidden" role="tabpanel">
+          <HalloweenCartaCard />
           <div class="chef-note mb-10">
             <p>
              Todas nuestras pizzas se elaboran con masa madre fresca y se hornean en horno de piedra a 300°C.

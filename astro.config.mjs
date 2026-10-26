@@ -9,7 +9,8 @@ const SITE_URL = 'https://elrincondehector.com';
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
-  integrations: [icon(), sitemap()],
+  // /halloween es temporal y va con noindex: fuera del sitemap (ver src/data/halloween.ts)
+  integrations: [icon(), sitemap({ filter: (page) => !page.includes('/halloween') })],
   vite: {
     plugins: [tailwindcss()],
     server: {

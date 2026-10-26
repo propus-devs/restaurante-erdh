@@ -1,0 +1,35 @@
+---
+import '../styles/halloween.css';
+
+interface Props {
+	count?: number;
+	rise?: string;
+	class?: string;
+}
+
+const { count = 14, rise = '-85vh', class: className = '' } = Astro.props;
+
+// Valores repartidos de forma determinista (sin Math.random) para que la
+// compilación sea estable. El retraso negativo hace que las brasas arranquen
+// ya repartidas por la altura en lugar de salir todas a la vez.
+const embers = Array.from({ length: count }, (_, i) => ({
+	x: ((i * 37 + 11) % 97) + 1,
+	size: 2 + ((i * 5) % 3),
+	duration: 7 + ((i * 3) % 6),
+	delay: -((i * 2.7) % 11),
+	drift: (((i * 13) % 5) - 2) * 16,
+}));
+---
+
+<div
+	aria-hidden="true"
+	class:list={['pointer-events-none absolute inset-0 overflow-hidden', className]}
+	style={`--rise: ${rise}`}
+>
+	{embers.map((e) => (
+		<span
+			class="hw-ember"
+			style={`--x:${e.x}%;--s:${e.size}px;--d:${e.duration}s;--delay:${e.delay}s;--drift:${e.drift}px`}
+		></span>
+	))}
+</div>
