@@ -15,6 +15,12 @@ interface FooterProps {
 }
 
 const { socialElements, restaurantName, year = new Date().getFullYear() } = Astro.props
+
+const legalLinks = [
+	{ href: '/aviso-legal', title: 'Aviso legal' },
+	{ href: '/politica-de-privacidad', title: 'Política de privacidad' },
+	{ href: '/politica-de-cookies', title: 'Política de cookies' },
+]
 ---
 
 <footer class="bg-bg text-secondary px-6 py-10 mt-auto border-t border-primary/5">
@@ -54,5 +60,12 @@ const { socialElements, restaurantName, year = new Date().getFullYear() } = Astr
 
 	</div>
 	<p class="text-xs text-secondary/30 text-center mt-8 max-w-5xl mx-auto">&copy; {year} {restaurantName}. Todos los derechos reservados.</p>
+	<nav aria-label="Información legal" class="mt-2 max-w-5xl mx-auto">
+		<ul class="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-secondary/30">
+			{legalLinks.map((l) => (
+				<li><a href={l.href} class="underline decoration-transparent underline-offset-2 transition-colors hover:decoration-current hover:text-secondary/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current focus-visible:rounded-sm">{l.title}</a></li>
+			))}
+		</ul>
+	</nav>
 	<p class="text-xs text-secondary/30 text-center mt-2 max-w-5xl mx-auto">Creada por <a href="https://propus.es/" target="_blank" rel="noopener" class="underline decoration-transparent underline-offset-2 transition-colors hover:decoration-current hover:text-secondary/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current focus-visible:rounded-sm">Propus<span class="sr-only"> (se abre en una pestaña nueva)</span></a></p>
 </footer>

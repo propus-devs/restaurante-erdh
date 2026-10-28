@@ -1,0 +1,30 @@
+---
+// Pinta un dato del titular (src/data/legal.json). Con `etiqueta` es una fila de
+// la lista de datos (y se omite si el valor es "No aplica"); sin ella, el valor
+// en línea. Si el dato está pendiente se resalta como [PENDIENTE: campo].
+import { v, aplica } from "../../lib/legal";
+
+interface Props {
+  k: string;
+  etiqueta?: string;
+}
+
+const { k, etiqueta } = Astro.props;
+const valor = v(k);
+const pendiente = valor.startsWith("[PENDIENTE:");
+---
+
+{
+  etiqueta ? (
+    aplica(k) && (
+      <div class="legal-fila">
+        <dt>{etiqueta}</dt>
+        <dd>{pendiente ? <mark class="legal-pendiente">{valor}</mark> : valor}</dd>
+      </div>
+    )
+  ) : pendiente ? (
+    <mark class="legal-pendiente">{valor}</mark>
+  ) : (
+    valor
+  )
+}

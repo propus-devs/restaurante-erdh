@@ -1,0 +1,50 @@
+---
+// Generado a partir de las plantillas de _legal/plantillas. Datos del titular: src/data/legal.json.
+import Legal from "../layouts/Legal.astro";
+import Dato from "../components/legal/Dato.astro";
+---
+
+<Legal
+  title="Aviso legal | El Rincón de Héctor"
+  description="Aviso legal y datos del titular de la web de El Rincón de Héctor."
+  titulo="Aviso legal"
+  actualizado="28 de octubre de 2026"
+>
+<h2>1. Titular del sitio web</h2>
+<p>En cumplimiento del artículo 10 de la Ley 34/2002, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE), se facilitan los datos del titular de este sitio web:</p>
+<dl class="legal-datos">
+  <Dato k="razonSocial" etiqueta="Titular" />
+  <Dato k="nombreComercial" etiqueta="Nombre comercial" />
+  <Dato k="formaJuridica" etiqueta="Forma jurídica" />
+  <Dato k="nif" etiqueta="NIF" />
+  <Dato k="domicilio" etiqueta="Domicilio" />
+  <Dato k="direccionLocal" etiqueta="Establecimiento" />
+  <Dato k="email" etiqueta="Correo electrónico" />
+  <Dato k="telefono" etiqueta="Teléfono" />
+  <Dato k="actividad" etiqueta="Actividad" />
+  <Dato k="registro" etiqueta="Datos registrales" />
+  <Dato k="dominio" etiqueta="Sitio web" />
+</dl>
+
+<h2>2. Objeto</h2>
+<p>Esta web tiene por objeto dar a conocer El Rincón de Héctor (carta, horarios, blog y promociones) y facilitar el contacto con el restaurante para reservar mesa o encargar comida para llevar por teléfono o WhatsApp.</p>
+
+<h2>3. Condiciones de uso</h2>
+<p>El usuario se compromete a hacer un uso lícito y diligente de la web y a no realizar actividades que puedan dañarla, sobrecargarla o impedir su normal funcionamiento, ni introducir contenidos que vulneren derechos de terceros.</p>
+<p>La información publicada (carta, precios, horarios, promociones) es orientativa y puede cambiar sin previo aviso; prevalece la que te confirmemos directamente.</p>
+
+<h2>4. Propiedad intelectual e industrial</h2>
+<p>Los textos, fotografías, logotipos, diseño y código de esta web son titularidad de <Dato k="razonSocial" /> o cuentan con la autorización de sus titulares. Queda prohibida su reproducción, distribución, comunicación pública o transformación sin autorización expresa y por escrito.</p>
+
+<h2>5. Enlaces y contenidos de terceros</h2>
+<p>Esta web contiene enlaces a sitios de terceros (WhatsApp, Instagram, Facebook y Google Maps) y carga contenidos de algunos de ellos, como se explica en la <a href="/politica-de-cookies">política de cookies</a>. El titular no controla sus contenidos ni sus políticas de privacidad y no se responsabiliza de ellos.</p>
+
+<h2>6. Responsabilidad</h2>
+<p>El titular no garantiza la disponibilidad continua del sitio ni se responsabiliza de los daños derivados de fallos técnicos ajenos a su control. Se reserva el derecho a modificar, suspender o retirar contenidos sin previo aviso.</p>
+
+<h2>7. Protección de datos y cookies</h2>
+<p>El tratamiento de datos personales se explica en la <a href="/politica-de-privacidad">política de privacidad</a> y el uso de cookies y almacenamiento local en la <a href="/politica-de-cookies">política de cookies</a>.</p>
+
+<h2>8. Legislación aplicable y jurisdicción</h2>
+<p>Este aviso legal se rige por la legislación española. Si el usuario tiene la condición de consumidor, podrá acudir a los juzgados y tribunales de su domicilio. En los demás casos, las partes se someten a los juzgados y tribunales de <Dato k="ciudadJuzgados" />.</p>
+</Legal>
