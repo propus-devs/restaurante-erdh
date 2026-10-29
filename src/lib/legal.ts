@@ -13,7 +13,7 @@ export function v(clave: string): string {
   return !x || x.toUpperCase() === "PENDIENTE" ? `[PENDIENTE: ${clave}]` : x;
 }
 
-/** "No aplica" permite ocultar la fila (p. ej. registro mercantil en un autónomo). */
+/** "No aplica" permite ocultar la fila (p. ej. registro mercantil en una persona física). */
 export function aplica(clave: string): boolean {
   return !/^no aplica$/i.test(String(valores[clave] ?? "").trim());
 }
