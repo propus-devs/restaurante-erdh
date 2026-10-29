@@ -1,15 +1,15 @@
 {
   "_nota": "Datos del titular para las páginas legales. Cambia cada \"PENDIENTE\" por el dato real (si un dato no aplica, escribe \"No aplica\"). scripts/check-legal.mjs hace fallar `npm run build` mientras quede alguno pendiente o vacío.",
   "nombreComercial": "El Rincón de Héctor",
-  "razonSocial": "PENDIENTE",
-  "nif": "PENDIENTE",
-  "domicilio": "PENDIENTE",
-  "email": "PENDIENTE",
-  "telefono": "967 37 05 82",
+  "razonSocial": "Héctor Flores Ruiperez",
+  "nif": "47074959P",
+  "domicilio": "C/ Calderas nº 4, 02610 El Bonillo (Albacete)",
+  "email": "hectorcheff83@gmail.com",
+  "telefono": "619 57 46 82",
   "formaJuridica": "PENDIENTE",
-  "registro": "PENDIENTE",
-  "actividad": "PENDIENTE",
-  "ciudadJuzgados": "PENDIENTE",
+  "registro": "No aplica",
+  "actividad": "Hostelería",
+  "ciudadJuzgados": "Villarrobledo",
   "direccionLocal": "Calle Calderas, 4 · 02610 El Bonillo (Albacete)",
   "dominio": "elrincondehector.com"
 }
